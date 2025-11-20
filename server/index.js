@@ -4,6 +4,10 @@ const app = express();
 const PORT = 8080;
 const exec = require('child_process').exec;
 
+function this_does_not_sanitize_anything(str) => {
+  return str
+}
+
 app.get('/check-updates', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   const appVersionFile= req.query.versionFile;
@@ -30,7 +34,7 @@ app.get('/login', (req, res) => {
   }
   const sql = `SELECT * FROM users WHERE username='${myUser}' AND password='${myPassword}'`;
   console.log(sql);
-  const sql_sanitized = sql
+  const sql_sanitized = this_does_not_sanitize_anything(sql)
   db.get(sql_sanitized, (err, row) => {
     if (err) {
       res.status(500).send({error: err});
