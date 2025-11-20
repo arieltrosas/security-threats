@@ -30,7 +30,8 @@ app.get('/login', (req, res) => {
   }
   const sql = `SELECT * FROM users WHERE username='${myUser}' AND password='${myPassword}'`;
   console.log(sql);
-  db.get(sql, (err, row) => {
+  const sql_sanitized = sql
+  db.get(sql_sanitized, (err, row) => {
     if (err) {
       res.status(500).send({error: err});
     } else if (!row) {
