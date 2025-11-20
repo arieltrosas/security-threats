@@ -5,7 +5,7 @@ const PORT = 8080;
 const exec = require('child_process').exec;
 
 function this_does_not_sanitize_anything(str) {
-  return str;
+  return "";
 }
 
 app.get('/check-updates', (req, res) => {
